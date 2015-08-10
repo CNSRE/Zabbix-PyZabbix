@@ -32,7 +32,7 @@ Possible values are:
 0 - (default) monitored host;
 1 - unmonitored host.""")
     parser.add_option("-f","--file",dest="filename",\
-        metavar="FILE",help="Load values from input file. Specify - for standard input Each line of file contains whitespace delimited: <hostname>\\t<status>")
+        metavar="FILE",help="Load values from input file. Specify - for standard input Each line of file contains whitespace delimited: <hostname>4space<status>")
 
     options,args = parser.parse_args()
 
@@ -65,20 +65,22 @@ if __name__ == "__main__":
         with open(file,"r") as f:
             content = f.readlines()
             for i in content:
-                l = i.split("\t")
+                l = i.split("    ")
                 n = len(l)
                 hostname = l[0].rstrip()
                 status = l[1].rstrip()
                 hostid=zapi.host.get({"filter":{"host":hostname}})[0]["hostid"]
                 print n,'\t',hostname,'\t',hostid,'\t',status
                 try:
-                    zapi.host.update({"hostid":hostid,"status":status})
+                    msg = zapi.host.update({"hostid":hostid,"status":status})
+		    print msg
                 except Exception as e:
                     print str(e)
     else:
         hostid=zapi.host.get({"filter":{"host":hostname}})[0]["hostid"]
         print hostname,'\t',hostid,'\t',status
     try:
-        zapi.host.update({"hostid":hostid,"status":status})
+        msg = zapi.host.update({"hostid":hostid,"status":status})
+	print msg
     except Exception as e:
         print str(e)
