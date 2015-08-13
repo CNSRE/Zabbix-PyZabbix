@@ -69,7 +69,7 @@ Possible values:
 0 - numeric float;
 1 - character;
 2 - log;
- numeric unsigned;
+3 - numeric unsigned;
 4 - text.""")
     parser.add_option("--delta",action="store",type="int",\
         dest="delta",default="0",help="""Value that will be stored.
