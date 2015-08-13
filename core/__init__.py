@@ -12,7 +12,6 @@ class ZabbixAPI(object):
             "method":"user.login",
             "params":"null",
             "id": 1,
-            "auth":""
         }
         self.url = url + "/api_jsonrpc.php"
         self.headers = headers
