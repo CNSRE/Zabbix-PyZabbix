@@ -57,7 +57,6 @@ if __name__ == "__main__":
     hostname = options.hostname
     key = options.key
     name = options.name
-
-    hostid=zapi.host.get({"filter":{"host":"Zabbix server"}})[0]["hostid"]
+    hostid=zapi.host.get({"filter":{"host":hostname}})[0]["hostid"]
     item=zapi.item.get({"output": "extend","hostids": hostid,"search":{"key_": key}})
     print hostid,'\t',item
