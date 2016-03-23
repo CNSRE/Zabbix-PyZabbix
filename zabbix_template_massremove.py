@@ -80,6 +80,6 @@ if __name__ == "__main__":
         templateids = get_list(templates_id, "templateid")
         hostid = zapi.host.get({"filter":{"host":hostname}})[0]["hostid"]
 	try:
-            print zapi.template.massremove({"templateids":templateids,"hostids":hostid})
+            print zapi.template.massremove({"templateids":templateids,"templateids_clear":templateids,"hostids":hostid})
 	except Exception as e:
 	    print str(e)

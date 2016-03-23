@@ -90,9 +90,9 @@ if __name__ == "__main__":
                 try:
 		    print proxy_id
                     if proxy_id:
-			print zapi.host.create({"host":hostname,"groups":groups_id,"templates":templates_id,"interfaces":[{"type":1,"main":1,"useip":1,"ip":ip,"dns":"","port":"10050"}],"proxy_hostid":proxy_id})
+			print zapi.host.create({"host":hostname,"groups":groups_id,"templates":templates_id,"interfaces":[{"type":1,"main":1,"useip":1,"ip":ip,"dns":"","port":"10050"}],"proxy_hostid":proxy_id,"status":status})
 		    else:
-			print zapi.host.create({"host":hostname,"groups":groups_id,"templates":templates_id,"interfaces":[{"type":1,"main":1,"useip":1,"ip":ip,"dns":"","port":"10050"}]})
+			print zapi.host.create({"host":hostname,"groups":groups_id,"templates":templates_id,"interfaces":[{"type":1,"main":1,"useip":1,"ip":ip,"dns":"","port":"10050","status":status}]})
                 except Exception as e:
                     print str(e)
     else:
@@ -102,8 +102,8 @@ if __name__ == "__main__":
 	templates_id = zapi.template.get({"output": "templateid","filter": {"host":templates.split(",")}})
 	try:
 	    if proxy_id:
-		print zapi.host.create({"host":hostname,"groups":groups_id,"templates":templates_id,"interfaces":[{"type":1,"main":1,"useip":1,"ip":ip,"dns":"","port":"10050"}],"proxy_hostid":proxy_id})
+		print zapi.host.create({"host":hostname,"groups":groups_id,"templates":templates_id,"interfaces":[{"type":1,"main":1,"useip":1,"ip":ip,"dns":"","port":"10050"}],"proxy_hostid":proxy_id,"status":status})
 	    else:
-		print zapi.host.create({"host":hostname,"groups":groups_id,"templates":templates_id,"interfaces":[{"type":1,"main":1,"useip":1,"ip":ip,"dns":"","port":"10050"}]})
+		print zapi.host.create({"host":hostname,"groups":groups_id,"templates":templates_id,"interfaces":[{"type":1,"main":1,"useip":1,"ip":ip,"dns":"","port":"10050","status":status}]})
 	except Exception as e:
 	    print str(e)
