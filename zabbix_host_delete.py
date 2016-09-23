@@ -57,7 +57,11 @@ if __name__ == "__main__":
             host_list = f.readlines()
 	    for hostname in host_list:
 		hostname = hostname.rstrip()
-		hostid=zapi.host.get({"filter":{"host":hostname},"output":"hostid"})[0]["hostid"]
+                try:
+		    hostid=zapi.host.get({"filter":{"host":hostname},"output":"hostid"})[0]["hostid"]
+                except Exception as e:
+                    print "can not get hostid for host:{0}".format(hostname)
+                    continue
 		print hostname,'\t',hostid
 		try:
 		    result = zapi.host.delete([hostid])
