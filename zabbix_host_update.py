@@ -79,8 +79,8 @@ if __name__ == "__main__":
     else:
         hostid=zapi.host.get({"filter":{"host":hostname}})[0]["hostid"]
         print hostname,'\t',hostid,'\t',status
-    try:
-        msg = zapi.host.update({"hostid":hostid,"status":status})
-	print msg
-    except Exception as e:
-        print str(e)
+        try:
+            msg = zapi.host.update({"hostid":hostid,"status":status})
+	    print msg
+        except Exception as e:
+            print str(e)
