@@ -78,7 +78,9 @@ if __name__ == "__main__":
         hostname = options.hostname
 	groups_id = zapi.hostgroup.get({"output": "groupid","filter": {"name":groups.split(",")}})
         groupids = get_list(groups_id, "groupid")
+        print groupids
         hostid = zapi.host.get({"filter":{"host":hostname}})[0]["hostid"]
+        print hostid
 	try:
             print zapi.hostgroup.massremove({"groupids":groupids,"hostids":hostid})
 	except Exception as e:
